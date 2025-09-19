@@ -132,16 +132,16 @@ namespace TaskManager.Models
             State = TaskState.TimeOut;
         }
 
-        public override string ToString() =>
-            $"{TaskName}: Size - {SizeBytes} Bytes; Initial duration - {InitialDuration} t; " +
-            $"Remaining duration - {RemainingDuration} t";
-
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
+
+        public override string ToString() =>
+            $"{TaskName}: Size - {SizeBytes} Bytes; Initial duration - {InitialDuration} t; " +
+            $"Remaining duration - {RemainingDuration} t";
     }
 
     public enum TaskState : byte
