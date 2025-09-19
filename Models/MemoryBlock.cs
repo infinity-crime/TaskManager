@@ -138,5 +138,9 @@ namespace TaskManager.Models
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
+
+        public override string ToString() =>
+            $"[{Offset}:{Offset + Size - 1}] Size = {Size} " +
+            $"{(IsFree ? "Free" : $"Using by {OwnerName ?? "Unknown"}")}";
     }
 }
