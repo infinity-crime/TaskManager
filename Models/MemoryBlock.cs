@@ -65,6 +65,8 @@ namespace TaskManager.Models
                     Owner = null;
 
                 OnPropertyChanged(nameof(IsFree));
+                OnPropertyChanged(nameof(OwnerName));
+                OnPropertyChanged(nameof(BlockStatus));
             }
         }
 

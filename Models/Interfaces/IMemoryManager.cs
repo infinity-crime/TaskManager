@@ -9,7 +9,7 @@ namespace TaskManager.Models.Interfaces
     public interface IMemoryManager
     {
         MemoryBlock? Allocate(ushort sizeTask, TaskItem owner);
-        void Free(MemoryBlock block);
+        bool Free(MemoryBlock block);
         IReadOnlyList<MemoryBlock> GetBlocksSnapshot();
         void Reset(ushort totalMemory);
     }
