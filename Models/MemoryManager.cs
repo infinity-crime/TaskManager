@@ -74,6 +74,9 @@ namespace TaskManager.Models
 
         public void Reset(ushort totalMemory)
         {
+            if(totalMemory < 1)
+                throw new ArgumentOutOfRangeException(nameof(totalMemory));
+
             TotalMemory = totalMemory;
             _blocks.Clear();
             _blocks.Add(new MemoryBlock(0, TotalMemory, true));
@@ -85,7 +88,7 @@ namespace TaskManager.Models
         protected virtual void OnMemoryChanged(MemoryChangeType type, MemoryBlock? affectedBlock = null)
         {
             IReadOnlyList<MemoryBlock> snapshot;
-            snapshot = _blocks.AsReadOnly();
+            snapshot = GetBlocksSnapshot();
 
             MemoryChanged?.Invoke(this, new MemoryChangedEventArgs(type, affectedBlock, snapshot));
         }
